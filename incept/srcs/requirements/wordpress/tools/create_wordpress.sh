@@ -2,7 +2,7 @@
 
 if [ -f ./wp-config.php ]
 then
-	echo "Wordpress already downloaded"
+	echo "Wordpress has been already downloaded."
 else
 
 	wget http://wordpress.org/latest.tar.gz
@@ -14,13 +14,9 @@ else
 	sed -i "s/password_here/$MYSQL_PASSWORD/g" wp-config-sample.php
 	sed -i "s/localhost/$MYSQL_HOSTNAME/g" wp-config-sample.php
 	sed -i "s/database_name_here/$MYSQL_DATABASE/g" wp-config-sample.php
-	
-	wp core download --allow-root;
-	wp core install --allow-root --url=${DOMAIN_NAME} --title=${WP_TITLE} --admin_user=${WP_ADMIN} --admin_password=${WP_ADMIN_PW} --admin_email=${WP_ADMIN_EMAIL};
-	wp user create --allow-root ${WP_USER} ${WP_ADMIN_EMAIL} --user_pass=${WP_USER_PW};
-	
+
 	cp wp-config-sample.php wp-config.php
-	
+	wp core install --allow-root --url=${DOMAIN_NAME} --title=${MYSQL_USER} --admin_user=${MYSQL_USER} --admin_password=${MYSQL_PASSWORD} --admin_email=${WP_ADMIN_EMAIL}
 
 fi
 

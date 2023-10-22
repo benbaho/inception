@@ -1,7 +1,6 @@
 version: '3'
 
 services:
-
   nginx:
     container_name: nginx
     build: ./requirements/nginx
@@ -12,6 +11,7 @@ services:
     restart: always
     networks:
       - network
+
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
@@ -22,6 +22,7 @@ services:
     restart: always
     env_file:
       - ./.env
+  
   wordpress:
     container_name: wordpress
     depends_on:
@@ -34,21 +35,22 @@ services:
       - wordpress_data:/var/www/html
     networks:
       - network
+
 volumes:
   mariadb_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/data/mariadb
+      device: /home/bdurmus/data/mariadb
       o: bind
+
   wordpress_data:
     driver: local
     driver_opts:
       type: none
-      device: /home/data/wordpress
+      device: /home/bdurmus/data/wordpress
       o: bind
 
 networks:
   network:
     driver: bridge
-
