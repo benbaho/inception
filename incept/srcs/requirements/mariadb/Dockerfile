@@ -11,15 +11,3 @@ COPY ./tools /var/www/
 RUN service mysql start && mysql < /var/www/initial_db.sql && rm -f /var/www/initial_db.sql
 
 CMD ["mysqld"] 
-
-
-
-
-
-
-
-
-
-
-
-

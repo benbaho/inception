@@ -16,8 +16,10 @@ else
 	sed -i "s/database_name_here/$MYSQL_DATABASE/g" wp-config-sample.php
 
 	cp wp-config-sample.php wp-config.php
-	wp core install --allow-root --url=${DOMAIN_NAME} --title=${MYSQL_USER} --admin_user=${MYSQL_USER} --admin_password=${MYSQL_PASSWORD} --admin_email=${WP_ADMIN_EMAIL}
+	wp core install --allow-root --url=${DOMAIN_NAME} --title=${MYSQL_USER} --admin_user=${WP_ROOT_LOGIN} --admin_password=${MYSQL_ROOT_PASSWORD} --admin_email=${WP_ROOT_EMAIL}
+	wp user create ${MYSQL_USER} ${WP_USER_EMAIL} --user_pass=${MYSQL_PASSWORD} --role=author --allow-root
+	wp theme install inspiro --activate --allow-root
 
 fi
 
-exec "$@"
+/usr/sbin/php-fpm7.3 -F

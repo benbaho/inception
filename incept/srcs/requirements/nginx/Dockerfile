@@ -1,16 +1,13 @@
 FROM debian:buster 
 
-RUN apt-get update && apt-get install -y nginx openssl && apt-get clean
+RUN apt-get update && apt-get install -y nginx openssl 
 
-RUN mkdir /etc/nginx/ssl
+RUN	openssl req -x509 -nodes -days 365 -newkey rsa:4096 \
+    -keyout /etc/ssl/private/nginx.key \
+    -out /etc/ssl/certs/nginx.crt \
+    -subj "/C=TR/ST=KOCAELI/L=GEBZE/O=42Kocaeli/CN=bdurmus.42.fr"
 
 COPY ./conf/nginx.conf /etc/nginx/sites-enabled/default
-COPY ./tools/nginx_start.sh /var/www
-
-RUN chmod +x /var/www/nginx_start.sh
-RUN mkdir -p /run/nginx
-
-ENTRYPOINT ["var/www/nginx_start.sh"]
 
 EXPOSE 443
 

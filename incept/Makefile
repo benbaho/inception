@@ -1,4 +1,3 @@
-
 all: 
 	@mkdir -p /home/bdurmus/data/wordpress
 	@mkdir -p /home/bdurmus/data/mariadb	
