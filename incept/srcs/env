@@ -1,0 +1,12 @@
+DOMAIN_NAME=bdurmus.42.fr
+
+MYSQL_HOSTNAME=mariadb
+MYSQL_DATABASE=wordpress
+
+MYSQL_USER=bdurmus
+MYSQL_PASSWORD=123
+WP_USER_EMAIL=bdurmus@@gmail.com
+
+MYSQL_ROOT_PASSWORD=root123
+WP_ROOT_LOGIN=root
+WP_ROOT_EMAIL=root@gamil.com
